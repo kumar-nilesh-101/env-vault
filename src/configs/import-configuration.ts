@@ -21,6 +21,6 @@ export class ImportConfiguration<T> {
     }
 
     register() {
-        return registerAs(this.readFor, this.envAsJSON);
+        return registerAs(this.readFor, () => this.envAsJSON);
     }
 }
