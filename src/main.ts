@@ -2,7 +2,6 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 import { ConfigService } from '@nestjs/config';
-import { ConfigType } from './configs/import-configuration';
 import { join } from 'path';
 
 async function bootstrap() {
@@ -15,7 +14,7 @@ async function bootstrap() {
         options: {
             package: configService.getOrThrow('APP.PROTO_PACKAGE'),
             protoPath: join(
-                __dirname,
+                process.cwd(),
                 configService.getOrThrow('APP.PROTO_PATH'),
             ),
             url: configService.getOrThrow('APP.MS_URL'),
