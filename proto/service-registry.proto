@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package service_registry;
+
+service MSRegistryService {
+    rpc registerService(serviceName) returns (registrationKey) {}
+    rpc getServiceRegistrationKey(serviceName) returns (registrationKey) {}
+    rpc deregisterService(serviceName) returns () {}
+}
+
+message serviceName {
+    string name = 1;
+}
+
+message registrationKey {
+    string key = 1;
+}

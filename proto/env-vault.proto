@@ -1,0 +1,5 @@
+syntax = "proto3";
+
+package env_vault;
+
+import "service-registry.proto";

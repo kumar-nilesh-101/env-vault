@@ -1,4 +1,4 @@
-export class CreateServiceRegistryDto {
+export class ServiceRegistryDto {
     serviceName: string;
     registryKey: string;
 }

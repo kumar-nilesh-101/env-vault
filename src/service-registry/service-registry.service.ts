@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { CreateServiceRegistryDto } from './dto/create-service-registry.dto';
+import { ServiceRegistryDto } from './dto/service-registry.dto';
 import { InjectModel } from '@nestjs/sequelize';
 import {
     ServiceRegistry,
@@ -14,7 +14,7 @@ export class ServiceRegistryService {
         private serviceRegistryRepository: ServiceRegistryRepository,
     ) {}
 
-    async create(createServiceRegistryDto: CreateServiceRegistryDto) {
+    async create(createServiceRegistryDto: ServiceRegistryDto) {
         return await this.serviceRegistryRepository.create(
             createServiceRegistryDto as any,
         );
