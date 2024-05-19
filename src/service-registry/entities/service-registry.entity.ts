@@ -1,4 +1,4 @@
-import { Column, Table, Model } from 'sequelize-typescript';
+import { Column, Table, Model, IsUUID } from 'sequelize-typescript';
 
 @Table({
     tableName: 'service_registry',
@@ -11,6 +11,7 @@ export class ServiceRegistry extends Model {
     })
     serviceName: string;
 
+    @IsUUID(4)
     @Column({
         primaryKey: true,
         unique: true,

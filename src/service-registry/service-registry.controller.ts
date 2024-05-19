@@ -2,6 +2,7 @@ import { GrpcMethod, GrpcService, Payload } from '@nestjs/microservices';
 import { ServiceRegistryService } from './service-registry.service';
 import { ServiceRegistryDto } from './dto/service-registry.dto';
 import { Controller } from '@nestjs/common';
+import { uuid } from 'uuidv4';
 
 @Controller()
 @GrpcService('MSRegistryService')
@@ -11,8 +12,13 @@ export class ServiceRegistryController {
     ) {}
 
     @GrpcMethod()
-    registerService(@Payload() registerServiceDto: ServiceRegistryDto) {
-        return this.serviceRegistryService.create(registerServiceDto);
+    registerService(@Payload() serviceName: string) {
+        const registrationKey = uuid();
+
+        const dto = new ServiceRegistryDto();
+        dto.registryKey = registrationKey;
+        dto.serviceName = serviceName;
+        return this.serviceRegistryService.create(dto);
     }
 
     @GrpcMethod()

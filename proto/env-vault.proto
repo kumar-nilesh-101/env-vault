@@ -3,3 +3,8 @@ syntax = "proto3";
 package env_vault;
 
 import "service-registry.proto";
+import "util-message.proto";
+
+service HealthCheckService {
+    rpc heathCheck(Empty) returns (Empty) {}
+}

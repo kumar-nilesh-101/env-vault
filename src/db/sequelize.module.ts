@@ -16,6 +16,7 @@ import { ConfigsModule } from 'src/configs/configs.module';
                 ),
                 autoLoadModels: true,
                 synchronize: true,
+                repositoryMode: true,
             }),
             inject: [ConfigService],
         }),
