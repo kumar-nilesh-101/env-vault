@@ -1,33 +1,33 @@
-import { GrpcMethod, GrpcService, Payload } from '@nestjs/microservices';
+import { GrpcMethod, Payload } from '@nestjs/microservices';
 import { ServiceRegistryService } from './service-registry.service';
 import { ServiceRegistryDto } from './dto/service-registry.dto';
 import { Controller } from '@nestjs/common';
 import { uuid } from 'uuidv4';
 
 @Controller()
-@GrpcService('MSRegistryService')
 export class ServiceRegistryController {
     constructor(
         private readonly serviceRegistryService: ServiceRegistryService,
     ) {}
 
-    @GrpcMethod()
-    registerService(@Payload() serviceName: string) {
+    @GrpcMethod('MSRegistryService', 'RegisterService')
+    async registerService(@Payload() serviceName: any) {
         const registrationKey = uuid();
 
         const dto = new ServiceRegistryDto();
         dto.registryKey = registrationKey;
-        dto.serviceName = serviceName;
-        return this.serviceRegistryService.create(dto);
+        dto.serviceName = serviceName.name;
+        const res = await this.serviceRegistryService.create(dto);
+        return res;
     }
 
-    @GrpcMethod()
-    getServiceRegistrationKey(@Payload() serviceName: string) {
+    @GrpcMethod('MSRegistryService', 'GetServiceRegistrationKey')
+    async getServiceRegistrationKey(@Payload() serviceName: string) {
         return this.serviceRegistryService.findByServiceName(serviceName);
     }
 
-    @GrpcMethod()
-    dergisterService(@Payload() registrationKey: string) {
+    @GrpcMethod('MSRegistryService', 'DeregisterService')
+    async dergisterService(@Payload() registrationKey: string) {
         return this.serviceRegistryService.remove(registrationKey);
     }
 }

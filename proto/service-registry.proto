@@ -4,9 +4,9 @@ import "util-message.proto";
 package service_registry;
 
 service MSRegistryService {
-    rpc registerService(ServiceName) returns (RegistrationKey) {}
-    rpc getServiceRegistrationKey(ServiceName) returns (RegistrationKey) {}
-    rpc deregisterService(ServiceName) returns (Empty) {}
+    rpc RegisterService(ServiceName) returns (RegistrationKey) {}
+    rpc GetServiceRegistrationKey(ServiceName) returns (RegistrationKey) {}
+    rpc DeregisterService(ServiceName) returns (Empty) {}
 }
 
 message ServiceName {

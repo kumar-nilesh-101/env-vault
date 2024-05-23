@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { ServiceRegistryRepository } from './entities/service-registry.entity';
+import { ServiceRegistryRepository } from '../db/entities/service-registry.entity';
 import { QueryTypes } from 'sequelize';
 import { PROVIDER_TOKENS } from './provider-token.constants';
 import { ServiceRegistryDto } from './dto/service-registry.dto';

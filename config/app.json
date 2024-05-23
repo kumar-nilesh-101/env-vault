@@ -1,5 +1,18 @@
 {
-    "PROTO_PACKAGE": "env_vault",
-    "PROTO_PATH": "./proto/env-vault.proto",
+    "PROTO_CONFIG": [
+        {
+            "package": "env_vault",
+            "path": "./proto/env-vault.proto"
+        },
+        {
+            "package": "service_registry",
+            "path": "./proto/service-registry.proto"
+        },
+        {
+            "package": "util_message",
+            "path": "./proto/util-message.proto"
+        }
+    ],
+    "PROTO_DIR": "./proto",
     "MS_URL": "0.0.0.0:3311"
 }

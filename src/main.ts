@@ -2,29 +2,31 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 import { ConfigService } from '@nestjs/config';
-import { join } from 'path';
 import { CreateImportPath } from './utils/import-file-path.factory';
+import { ReflectionService } from '@grpc/reflection';
 
 async function bootstrap() {
     const app = await NestFactory.create(AppModule);
     const configService = app.get(ConfigService);
 
-    console.log(join(__dirname, configService.getOrThrow('APP.PROTO_PATH')));
+    const protoConfig = configService.getOrThrow('APP.PROTO_CONFIG');
+    const protoPackages = protoConfig.map((conf) => conf.package);
+    const protoPaths = protoConfig.map((conf) => CreateImportPath(conf.path));
+
     const microserviceOpts: MicroserviceOptions = {
         transport: Transport.GRPC,
         options: {
-            package: configService.getOrThrow('APP.PROTO_PACKAGE'),
-            protoPath: CreateImportPath(
-                configService.getOrThrow('APP.PROTO_PATH'),
-            ),
+            package: protoPackages,
+            protoPath: protoPaths,
             loader: {
                 includeDirs: [
-                    CreateImportPath(
-                        configService.getOrThrow('APP.PROTO_PATH'),
-                    ),
+                    CreateImportPath(configService.getOrThrow('APP.PROTO_DIR')),
                 ],
             },
             url: configService.getOrThrow('APP.MS_URL'),
+            onLoadPackageDefinition: (pkg, server) => {
+                new ReflectionService(pkg).addToServer(server);
+            },
         },
     };
     app.connectMicroservice(microserviceOpts).listen();

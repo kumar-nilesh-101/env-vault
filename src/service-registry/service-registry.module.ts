@@ -2,9 +2,11 @@ import { Module } from '@nestjs/common';
 import { ServiceRegistryService } from './service-registry.service';
 import { ServiceRegistryController } from './service-registry.controller';
 import { PROVIDER_TOKENS } from './provider-token.constants';
-import { ServiceRegistry } from './entities/service-registry.entity';
+import { ServiceRegistry } from '../db/entities/service-registry.entity';
+import { SequelizeModule } from 'src/db/sequelize.module';
 
 @Module({
+    imports: [SequelizeModule],
     controllers: [ServiceRegistryController],
     providers: [
         {
