@@ -1,23 +1,27 @@
-import { Column, Table, Model, IsUUID } from 'sequelize-typescript';
+import { Entity, Column, CreateDateColumn, UpdateDateColumn } from 'typeorm';
 
-@Table({
-    tableName: 'service_registry',
-    underscored: true,
-})
-export class ServiceRegistry extends Model {
+@Entity()
+export class ServiceRegistry {
     @Column({
         unique: true,
-        allowNull: false,
+        nullable: false,
+        type: 'text',
+        name: 'service_name',
     })
     serviceName: string;
 
-    @IsUUID(4)
     @Column({
-        primaryKey: true,
-        unique: true,
-        allowNull: false,
+        primary: true,
+        type: 'uuid',
+        name: 'registry_key',
     })
     registryKey: string;
+
+    @CreateDateColumn()
+    createdAt: Date;
+
+    @UpdateDateColumn()
+    updatedAt: Date;
 }
 
 export type ServiceRegistryRepository = typeof ServiceRegistry;

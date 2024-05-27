@@ -1,25 +1,27 @@
 import { Module } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { SequelizeModule as SM } from '@nestjs/sequelize';
 import { join } from 'path';
 import { ConfigsModule } from 'src/configs/configs.module';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
 import { ServiceRegistry } from './entities/service-registry.entity';
 
 @Module({
     imports: [
-        SM.forRootAsync({
+        TypeOrmModule.forRootAsync({
             imports: [ConfigsModule],
-            useFactory: async (configService: ConfigService) => ({
-                dialect: 'sqlite',
-                storage: join(
+            useFactory: (configService: ConfigService) => ({
+                type: 'sqlite',
+                database: join(
                     process.cwd(),
                     configService.get<string>('DB.FILE_PATH'),
                 ),
-                models: [ServiceRegistry],
-                repositoryMode: true,
+                autoLoadEntities: true,
+                entities: [ServiceRegistry],
+                namingStrategy: new SnakeNamingStrategy(),
             }),
             inject: [ConfigService],
         }),
     ],
 })
-export class SequelizeModule {}
+export class DatabaseModule {}

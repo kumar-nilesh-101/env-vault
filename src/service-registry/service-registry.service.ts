@@ -1,36 +1,29 @@
-import { Inject, Injectable } from '@nestjs/common';
-import { ServiceRegistryRepository } from '../db/entities/service-registry.entity';
-import { QueryTypes } from 'sequelize';
-import { PROVIDER_TOKENS } from './provider-token.constants';
+import { Injectable } from '@nestjs/common';
+import { ServiceRegistry } from '../db/entities/service-registry.entity';
 import { ServiceRegistryDto } from './dto/service-registry.dto';
+import { Repository } from 'typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class ServiceRegistryService {
     constructor(
-        @Inject(PROVIDER_TOKENS.SERVICE_REGISTRY)
-        private serviceRegistryRepository: ServiceRegistryRepository,
+        @InjectRepository(ServiceRegistry)
+        private serviceRegistryRepository: Repository<ServiceRegistry>,
     ) {}
 
     async create(serviceRegistryDto: ServiceRegistryDto) {
-        return await this.serviceRegistryRepository.create(
-            serviceRegistryDto as any,
-        );
+        return await this.serviceRegistryRepository.insert(serviceRegistryDto);
     }
 
     async findByServiceName(serviceName: string) {
         return await this.serviceRegistryRepository.findOne({
-            type: QueryTypes.SELECT,
             where: {
                 serviceName,
             },
         });
     }
 
-    async remove(registrationKey: string) {
-        return await this.serviceRegistryRepository.destroy({
-            where: {
-                registrationKey,
-            },
-        });
+    async remove(registryKey: string) {
+        return await this.serviceRegistryRepository.delete({ registryKey });
     }
 }
