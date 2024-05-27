@@ -4,7 +4,6 @@ import { join } from 'path';
 import { ConfigsModule } from 'src/configs/configs.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
-import { ServiceRegistry } from './entities/service-registry.entity';
 
 @Module({
     imports: [
@@ -17,7 +16,6 @@ import { ServiceRegistry } from './entities/service-registry.entity';
                     configService.get<string>('DB.FILE_PATH'),
                 ),
                 autoLoadEntities: true,
-                entities: [ServiceRegistry],
                 namingStrategy: new SnakeNamingStrategy(),
             }),
             inject: [ConfigService],
