@@ -17,6 +17,7 @@ export class ServiceRegistryController {
         const dto = new ServiceRegistryDto();
         dto.registryKey = registrationKey;
         dto.serviceName = serviceName.name;
+
         const res = await this.serviceRegistryService.create(dto);
         return res;
     }
