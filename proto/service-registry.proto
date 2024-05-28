@@ -6,7 +6,7 @@ package service_registry;
 service MSRegistryService {
     rpc RegisterService(ServiceName) returns (RegistrationKey) {}
     rpc GetServiceRegistrationKey(ServiceName) returns (RegistrationKey) {}
-    rpc DeregisterService(ServiceName) returns (Empty) {}
+    rpc DeregisterService(RegistrationKey) returns (Empty) {}
 }
 
 message ServiceName {
@@ -14,5 +14,5 @@ message ServiceName {
 }
 
 message RegistrationKey {
-    string key = 1;
+    string key = 2;
 }

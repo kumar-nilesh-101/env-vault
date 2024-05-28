@@ -18,17 +18,20 @@ export class ServiceRegistryController {
         dto.registryKey = registrationKey;
         dto.serviceName = serviceName.name;
 
-        const res = await this.serviceRegistryService.create(dto);
-        return res;
+        return await this.serviceRegistryService.create(dto);
     }
 
     @GrpcMethod('MSRegistryService', 'GetServiceRegistrationKey')
-    async getServiceRegistrationKey(@Payload() serviceName: string) {
-        return this.serviceRegistryService.findByServiceName(serviceName);
+    async getServiceRegistrationKey(@Payload() serviceName: any) {
+        const res = await this.serviceRegistryService.findByServiceName(
+            serviceName.name,
+        );
+        return res;
     }
 
     @GrpcMethod('MSRegistryService', 'DeregisterService')
-    async dergisterService(@Payload() registrationKey: string) {
-        return this.serviceRegistryService.remove(registrationKey);
+    async dergisterService(@Payload() registryKey: any) {
+        const res = await this.serviceRegistryService.remove(registryKey.key);
+        return res;
     }
 }
