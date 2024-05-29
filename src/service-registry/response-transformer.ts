@@ -1,8 +1,8 @@
 import { InsertResult } from 'typeorm';
 import { ServiceRegistry } from './entities/service-registry.entity';
-import { ITransformerFactory } from 'src/ITransformerFactory';
+import { ITransformer } from 'src/ITransformerFactory';
 
-export class ResponseTransformerFactory implements ITransformerFactory {
+export class ResponseTransformer implements ITransformer {
     private registerService(response: InsertResult) {
         const { registryKey } = response.identifiers[0];
         return { key: registryKey };

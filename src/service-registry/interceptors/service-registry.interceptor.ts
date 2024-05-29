@@ -5,7 +5,7 @@ import {
     NestInterceptor,
 } from '@nestjs/common';
 import { Observable, map } from 'rxjs';
-import { ResponseTransformerFactory } from '../response-transformer.factory';
+import { ResponseTransformer } from '../response-transformer';
 
 @Injectable()
 export class ServiceRegistryInterceptor implements NestInterceptor {
@@ -15,7 +15,7 @@ export class ServiceRegistryInterceptor implements NestInterceptor {
             .handle()
             .pipe(
                 map((res) =>
-                    new ResponseTransformerFactory().transform(
+                    new ResponseTransformer().transform(
                         context.getHandler().name,
                         res,
                     ),
