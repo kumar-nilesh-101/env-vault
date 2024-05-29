@@ -2,7 +2,7 @@ import { ServiceRegistry } from 'src/service-registry/entities/service-registry.
 import { InsertResult } from 'typeorm';
 
 export function transformServiceRegistryInsertResult(response: InsertResult) {
-    const { registryKey } = response.generatedMaps[0];
+    const { registryKey } = response.identifiers[0];
     return { key: registryKey };
 }
 

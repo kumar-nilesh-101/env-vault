@@ -1,4 +1,4 @@
-import { Entity, Column, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+import { Entity, Column } from 'typeorm';
 
 @Entity()
 export class ServiceRegistry {
@@ -16,12 +16,6 @@ export class ServiceRegistry {
         name: 'registry_key',
     })
     registryKey: string;
-
-    @CreateDateColumn()
-    createdAt: Date;
-
-    @UpdateDateColumn()
-    updatedAt: Date;
 }
 
 export type ServiceRegistryRepository = typeof ServiceRegistry;

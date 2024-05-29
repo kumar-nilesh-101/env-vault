@@ -1,3 +1,7 @@
 {
-    "FILE_PATH": "./data/env.sqlite3"
+    "HOST": "localhost",
+    "PORT": 3306,
+    "USERNAME": "nilesh",
+    "PASSWORD": "test@123",
+    "DATABASE_NAME": "env"
 }

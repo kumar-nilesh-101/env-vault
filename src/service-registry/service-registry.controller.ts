@@ -23,15 +23,13 @@ export class ServiceRegistryController {
 
     @GrpcMethod('MSRegistryService', 'GetServiceRegistrationKey')
     async getServiceRegistrationKey(@Payload() serviceName: any) {
-        const res = await this.serviceRegistryService.findByServiceName(
+        return await this.serviceRegistryService.findByServiceName(
             serviceName.name,
         );
-        return res;
     }
 
     @GrpcMethod('MSRegistryService', 'DeregisterService')
     async dergisterService(@Payload() registryKey: any) {
-        const res = await this.serviceRegistryService.remove(registryKey.key);
-        return res;
+        await this.serviceRegistryService.remove(registryKey.key);
     }
 }
