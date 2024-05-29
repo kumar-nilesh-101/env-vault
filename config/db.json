@@ -3,5 +3,5 @@
     "PORT": 3306,
     "USERNAME": "nilesh",
     "PASSWORD": "test@123",
-    "DATABASE_NAME": "env"
+    "NAME": "env"
 }

@@ -1,6 +1,5 @@
 import { Module } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { join } from 'path';
 import { ConfigsModule } from 'src/configs/configs.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
@@ -10,11 +9,12 @@ import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
         TypeOrmModule.forRootAsync({
             imports: [ConfigsModule],
             useFactory: (configService: ConfigService) => ({
-                type: 'sqlite',
-                database: join(
-                    process.cwd(),
-                    configService.get<string>('DB.FILE_PATH'),
-                ),
+                type: 'mysql',
+                host: configService.getOrThrow('DB.HOST'),
+                port: configService.getOrThrow('DB.PORT'),
+                username: configService.getOrThrow('DB.USERNAME'),
+                password: configService.getOrThrow('DB.PASSWORD'),
+                database: configService.getOrThrow('DB.NAME'),
                 autoLoadEntities: true,
                 namingStrategy: new SnakeNamingStrategy(),
             }),
