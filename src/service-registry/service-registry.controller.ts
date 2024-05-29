@@ -1,9 +1,11 @@
 import { GrpcMethod, Payload } from '@nestjs/microservices';
 import { ServiceRegistryService } from './service-registry.service';
 import { ServiceRegistryDto } from './dto/service-registry.dto';
-import { Controller } from '@nestjs/common';
+import { Controller, UseInterceptors } from '@nestjs/common';
 import { uuid } from 'uuidv4';
+import { ServiceRegistryInterceptor } from './interceptors/service-registry.interceptor';
 
+@UseInterceptors(ServiceRegistryInterceptor)
 @Controller()
 export class ServiceRegistryController {
     constructor(
@@ -11,25 +13,23 @@ export class ServiceRegistryController {
     ) {}
 
     @GrpcMethod('MSRegistryService', 'RegisterService')
-    async registerService(@Payload() serviceName: any) {
+    async registerService(@Payload('name') serviceName: any) {
         const registrationKey = uuid();
 
         const dto = new ServiceRegistryDto();
         dto.registryKey = registrationKey;
-        dto.serviceName = serviceName.name;
+        dto.serviceName = serviceName;
 
         return await this.serviceRegistryService.create(dto);
     }
 
     @GrpcMethod('MSRegistryService', 'GetServiceRegistrationKey')
-    async getServiceRegistrationKey(@Payload() serviceName: any) {
-        return await this.serviceRegistryService.findByServiceName(
-            serviceName.name,
-        );
+    async getServiceRegistrationKey(@Payload('name') serviceName: any) {
+        return await this.serviceRegistryService.findByServiceName(serviceName);
     }
 
     @GrpcMethod('MSRegistryService', 'DeregisterService')
-    async dergisterService(@Payload() registryKey: any) {
-        await this.serviceRegistryService.remove(registryKey.key);
+    async dergisterService(@Payload('key') registryKey: any) {
+        await this.serviceRegistryService.remove(registryKey);
     }
 }
