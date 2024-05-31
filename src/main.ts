@@ -4,6 +4,7 @@ import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 import { ConfigService } from '@nestjs/config';
 import { CreateImportPath } from './utils/import-file-path.factory';
 import { ReflectionService } from '@grpc/reflection';
+import { GrpcExceptionFilter } from './rpc-exception.filter';
 
 async function bootstrap() {
     const app = await NestFactory.create(AppModule);
@@ -29,7 +30,12 @@ async function bootstrap() {
             },
         },
     };
-    app.connectMicroservice(microserviceOpts).listen();
+
+    app.useGlobalFilters(new GrpcExceptionFilter());
+    app.connectMicroservice(microserviceOpts, {
+        inheritAppConfig: true,
+    });
+    app.startAllMicroservices();
 }
 
 bootstrap();
