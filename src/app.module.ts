@@ -4,10 +4,9 @@ import { AppService } from './app.service';
 import { ConfigsModule } from './configs/configs.module';
 import { DatabaseModule } from './db/database.module';
 import { ServiceRegistryModule } from './service-registry/service-registry.module';
-import { GrpcExceptionsModule } from './grpc-exceptions/grpc-exceptions.module';
 
 @Module({
-    imports: [ConfigsModule, DatabaseModule, ServiceRegistryModule, GrpcExceptionsModule],
+    imports: [ConfigsModule, DatabaseModule, ServiceRegistryModule],
     controllers: [AppController],
     providers: [AppService],
 })

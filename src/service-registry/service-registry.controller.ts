@@ -4,6 +4,7 @@ import { ServiceRegistryDto } from './dto/service-registry.dto';
 import { Controller, UseInterceptors } from '@nestjs/common';
 import { uuid } from 'uuidv4';
 import { ServiceRegistryInterceptor } from './interceptors/service-registry.interceptor';
+import { ValidateUUID } from 'src/validations/validators';
 
 @UseInterceptors(ServiceRegistryInterceptor)
 @Controller()
@@ -29,7 +30,7 @@ export class ServiceRegistryController {
     }
 
     @GrpcMethod('MSRegistryService', 'DeregisterService')
-    async dergisterService(@Payload('key') registryKey: any) {
+    async dergisterService(@Payload('key', ValidateUUID) registryKey: any) {
         await this.serviceRegistryService.remove(registryKey);
     }
 }
