@@ -1,6 +1,6 @@
 import { Catch, ExceptionFilter } from '@nestjs/common';
-import { BaseGrpcException } from '../BaseGrpcException.factory';
 import { throwError } from 'rxjs';
+import { BaseGrpcException } from 'src/exceptions/BaseGrpcException.factory';
 
 @Catch(BaseGrpcException)
 export class GrpcExceptionFilter implements ExceptionFilter<BaseGrpcException> {

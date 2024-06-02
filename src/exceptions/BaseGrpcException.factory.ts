@@ -1,8 +1,7 @@
-import { status } from '@grpc/grpc-js';
 import { RpcException } from '@nestjs/microservices';
 
 export class BaseGrpcException extends RpcException {
-    constructor(name: string, error: string | object, statusCode: status) {
+    constructor(name: string, error: string | object, statusCode: number) {
         const rpcExceptionPayload = {
             message: JSON.stringify({
                 error,
