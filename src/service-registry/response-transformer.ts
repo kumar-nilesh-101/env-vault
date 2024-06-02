@@ -1,6 +1,6 @@
 import { InsertResult } from 'typeorm';
 import { ServiceRegistry } from './entities/service-registry.entity';
-import { ITransformer } from 'src/general-interfaces/ITransformerFactory';
+import { ITransformer } from 'src/interfaces/ITransformerFactory';
 
 export class ResponseTransformer implements ITransformer {
     private registerService(response: InsertResult) {
