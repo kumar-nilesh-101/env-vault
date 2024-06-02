@@ -5,6 +5,7 @@ import { ConfigService } from '@nestjs/config';
 import { CreateImportPath } from './utils/import-file-path.factory';
 import { ReflectionService } from '@grpc/reflection';
 import { GrpcExceptionFilter } from './exceptions/filters';
+import { SqlExceptionFilter } from './exceptions/filters/sql-exception.filter';
 
 async function bootstrap() {
     const app = await NestFactory.create(AppModule);
@@ -31,7 +32,7 @@ async function bootstrap() {
         },
     };
 
-    app.useGlobalFilters(new GrpcExceptionFilter());
+    app.useGlobalFilters(new GrpcExceptionFilter(), new SqlExceptionFilter());
     app.connectMicroservice(microserviceOpts, {
         inheritAppConfig: true,
     });

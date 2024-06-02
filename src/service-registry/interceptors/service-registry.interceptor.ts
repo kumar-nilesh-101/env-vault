@@ -4,7 +4,7 @@ import {
     Injectable,
     NestInterceptor,
 } from '@nestjs/common';
-import { Observable, map } from 'rxjs';
+import { Observable, catchError, map, throwError } from 'rxjs';
 import { ResponseTransformer } from '../response-transformer';
 
 @Injectable()
@@ -20,6 +20,7 @@ export class ServiceRegistryInterceptor implements NestInterceptor {
                         res,
                     ),
                 ),
-            );
+            )
+            .pipe(catchError((err) => throwError(() => err)));
     }
 }
