@@ -31,6 +31,6 @@ export class ServiceRegistryController {
 
     @GrpcMethod('MSRegistryService', 'DeregisterService')
     async dergisterService(@Payload('key', ValidateUUID) registryKey: any) {
-        await this.serviceRegistryService.remove(registryKey);
+        return await this.serviceRegistryService.remove(registryKey);
     }
 }
