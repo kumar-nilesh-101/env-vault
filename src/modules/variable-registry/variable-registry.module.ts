@@ -1,4 +1,9 @@
 import { Module } from '@nestjs/common';
+import { VariableRegistryController } from './variable-registry.controller';
+import { VariableRegistryService } from './variable-registry.service';
 
-@Module({})
+@Module({
+    controllers: [VariableRegistryController],
+    providers: [VariableRegistryService],
+})
 export class VariableRegistryModule {}
