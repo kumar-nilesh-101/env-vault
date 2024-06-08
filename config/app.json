@@ -11,6 +11,10 @@
         {
             "package": "util_message",
             "path": "./proto/util-message.proto"
+        },
+        {
+            "package": "environment_registry",
+            "path": "./proto/environment-registry.proto"
         }
     ],
     "PROTO_DIR": "./proto",

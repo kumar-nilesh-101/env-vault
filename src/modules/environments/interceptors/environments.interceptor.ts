@@ -4,13 +4,13 @@ import {
     Injectable,
     NestInterceptor,
 } from '@nestjs/common';
-import { Observable, catchError, map, throwError } from 'rxjs';
-import { ResponseTransformer } from '../response-transformer';
+import { Observable, map } from 'rxjs';
 import { NotFoundException, UnknownException } from 'src/exceptions/grpc';
 import { DeleteResult } from 'typeorm';
+import { ResponseTransformer } from '../response-transformer';
 
 @Injectable()
-export class ServiceRegistryInterceptor implements NestInterceptor {
+export class EnvironmentsInterceptor implements NestInterceptor {
     intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
         return next.handle().pipe(
             map((res) => {
@@ -27,7 +27,6 @@ export class ServiceRegistryInterceptor implements NestInterceptor {
                     res,
                 );
             }),
-            catchError((err) => throwError(() => err)),
         );
     }
 }

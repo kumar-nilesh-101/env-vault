@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package environment_registry;
+
+import "util-message.proto";
+
+service EnvironmentsService {
+    rpc RegisterEnvironment(EnvironmentName) returns (EnvironmentKey) {}
+    rpc GetEnvironmentKey(EnvironmentName) returns (EnvironmentKey) {}
+    rpc DeregisterEnvironment(EnvironmentKey) returns (Empty) {}
+}
+
+message EnvironmentName {
+    required string name = 1;
+}
+
+message EnvironmentKey {
+    required string key = 2;
+}

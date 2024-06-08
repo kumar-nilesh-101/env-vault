@@ -1,13 +1,13 @@
-import { Entity, Column } from 'typeorm';
+import { Column, Entity } from 'typeorm';
 
 @Entity()
-export class ServiceRegistry {
+export class Environment {
     @Column({
         unique: true,
         nullable: false,
         type: 'varchar',
     })
-    serviceName: string;
+    environmentName: string;
 
     @Column({
         primary: true,
@@ -15,5 +15,3 @@ export class ServiceRegistry {
     })
     registryKey: string;
 }
-
-export type ServiceRegistryRepository = typeof ServiceRegistry;
