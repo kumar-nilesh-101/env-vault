@@ -6,7 +6,7 @@ import "util-message.proto";
 
 service EnvironmentsService {
     rpc RegisterEnvironment(EnvironmentName) returns (EnvironmentKey) {}
-    rpc GetEnvironmentKey(EnvironmentName) returns (EnvironmentKey) {}
+    rpc GetEnvironmentRegistryKey(EnvironmentName) returns (EnvironmentKey) {}
     rpc DeregisterEnvironment(EnvironmentKey) returns (Empty) {}
 }
 

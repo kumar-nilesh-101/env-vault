@@ -6,7 +6,7 @@ import "util-message.proto";
 
 service MSRegistryService {
     rpc RegisterService(ServiceName) returns (RegistrationKey) {}
-    rpc GetServiceRegistrationKey(ServiceName) returns (RegistrationKey) {}
+    rpc GetServiceRegistryKey(ServiceName) returns (RegistrationKey) {}
     rpc DeregisterService(RegistrationKey) returns (Empty) {}
 }
 

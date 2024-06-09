@@ -22,7 +22,7 @@ export class EnvironmentController {
         return await this.environmentService.create(dto);
     }
 
-    @GrpcMethod('EnvironmentsService', 'GetEnvironmentKey')
+    @GrpcMethod('EnvironmentsService', 'GetEnvironmentRegistryKey')
     async getEnvironmentRegistryKey(@Payload('name') envName: string) {
         return await this.environmentService.findByEnvironmentName(envName);
     }

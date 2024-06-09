@@ -5,13 +5,13 @@ import { ConfigsModule } from '../../configs/configs.module';
 import { DatabaseModule } from '../../db/database.module';
 import { ServiceRegistryModule } from '../service-registry/service-registry.module';
 import { VariableRegistryModule } from '../variable-registry/variable-registry.module';
-import { EnvironmentsModule } from '../environments/environments.module';
+import { EnvironmentsRegistryModule } from '../environments/environments.module';
 
 @Module({
     imports: [
         ConfigsModule,
         DatabaseModule,
-        EnvironmentsModule,
+        EnvironmentsRegistryModule,
         ServiceRegistryModule,
         VariableRegistryModule,
     ],

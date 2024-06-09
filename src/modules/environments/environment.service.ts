@@ -1,14 +1,14 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Environment } from './entities/environment.entity';
+import { EnvironmentRegistry } from './entities/environment.entity';
 import { EnvironmentDto } from './dto/environments.dto';
 
 @Injectable()
 export class EnvironmentService {
     constructor(
-        @InjectRepository(Environment)
-        private environmentRepository: Repository<Environment>,
+        @InjectRepository(EnvironmentRegistry)
+        private environmentRepository: Repository<EnvironmentRegistry>,
     ) {}
 
     async create(environmentDto: EnvironmentDto) {

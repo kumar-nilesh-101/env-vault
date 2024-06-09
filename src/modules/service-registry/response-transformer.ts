@@ -8,7 +8,7 @@ export class ResponseTransformer implements ITransformer {
         return { key: registryKey };
     }
 
-    private getServiceRegistrationKey(response: ServiceRegistry) {
+    private getServiceRegistryKey(response: ServiceRegistry) {
         const { registryKey } = response;
         return { key: registryKey };
     }

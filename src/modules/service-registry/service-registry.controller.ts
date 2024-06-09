@@ -24,8 +24,8 @@ export class ServiceRegistryController {
         return await this.serviceRegistryService.create(dto);
     }
 
-    @GrpcMethod('MSRegistryService', 'GetServiceRegistrationKey')
-    async getServiceRegistrationKey(@Payload('name') serviceName: any) {
+    @GrpcMethod('MSRegistryService', 'GetServiceRegistryKey')
+    async getServiceRegistryKey(@Payload('name') serviceName: any) {
         return await this.serviceRegistryService.findByServiceName(serviceName);
     }
 
