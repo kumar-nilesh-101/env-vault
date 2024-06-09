@@ -1,7 +1,7 @@
 import { Column, Entity } from 'typeorm';
 
 @Entity()
-export class EnvironmentRegistry {
+export class EnvironmentsRegistry {
     @Column({
         unique: true,
         nullable: false,

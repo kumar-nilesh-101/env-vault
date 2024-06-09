@@ -1,17 +1,17 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { EnvironmentRegistry } from './entities/environment.entity';
-import { EnvironmentDto } from './dto/environments.dto';
+import { EnvironmentsRegistry } from './entities/environments-registry.entity';
+import { EnvironmentsRegistryDto } from './dto/environments-registry.dto';
 
 @Injectable()
 export class EnvironmentService {
     constructor(
-        @InjectRepository(EnvironmentRegistry)
-        private environmentRepository: Repository<EnvironmentRegistry>,
+        @InjectRepository(EnvironmentsRegistry)
+        private environmentRepository: Repository<EnvironmentsRegistry>,
     ) {}
 
-    async create(environmentDto: EnvironmentDto) {
+    async create(environmentDto: EnvironmentsRegistryDto) {
         return await this.environmentRepository.insert(environmentDto);
     }
 

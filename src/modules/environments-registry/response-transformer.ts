@@ -1,6 +1,6 @@
 import { ITransformer } from 'src/interfaces/ITransformerFactory';
 import { InsertResult } from 'typeorm';
-import { EnvironmentRegistry } from './entities/environment.entity';
+import { EnvironmentsRegistry } from './entities/environments-registry.entity';
 
 export class ResponseTransformer implements ITransformer {
     private registerEnvironment(response: InsertResult) {
@@ -8,7 +8,7 @@ export class ResponseTransformer implements ITransformer {
         return { key: registryKey };
     }
 
-    private getEnvironmentRegistryKey(response: EnvironmentRegistry) {
+    private getEnvironmentRegistryKey(response: EnvironmentsRegistry) {
         const { registryKey } = response;
         return { key: registryKey };
     }

@@ -1,4 +1,4 @@
-export class EnvironmentDto {
+export class EnvironmentsRegistryDto {
     environmentName: string;
     registryKey: string;
 }

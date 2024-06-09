@@ -1,4 +1,4 @@
-import { EnvironmentsInterceptor } from './environments.interceptor';
+import { EnvironmentsInterceptor } from './environments-registry.interceptor';
 
 describe('EnvironmentsInterceptor', () => {
     it('should be defined', () => {

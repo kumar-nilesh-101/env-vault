@@ -1,10 +1,10 @@
 import { Controller, UseInterceptors } from '@nestjs/common';
-import { EnvironmentService } from './environment.service';
+import { EnvironmentService } from './environment-registry.service';
 import { GrpcMethod, Payload } from '@nestjs/microservices';
 import { ValidateUUID } from 'src/validations/validators';
 import { uuid } from 'uuidv4';
-import { EnvironmentDto } from './dto/environments.dto';
-import { EnvironmentsInterceptor } from './interceptors/environments.interceptor';
+import { EnvironmentsRegistryDto } from './dto/environments-registry.dto';
+import { EnvironmentsInterceptor } from './interceptors/environments-registry.interceptor';
 
 @UseInterceptors(EnvironmentsInterceptor)
 @Controller()
@@ -15,7 +15,7 @@ export class EnvironmentController {
     async registerEnvironment(@Payload('name') envName: string) {
         const registryKey = uuid();
 
-        const dto = new EnvironmentDto();
+        const dto = new EnvironmentsRegistryDto();
         dto.environmentName = envName;
         dto.registryKey = registryKey;
 
