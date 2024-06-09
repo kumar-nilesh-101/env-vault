@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package variables_registry;
+
+import "util-message.proto";
+
+service VariablesRegistryService {
+    rpc RegisterVariable(VariableName) returns (Empty) {}
+    rpc GetVariable(VariableName) returns (VariableValue) {}
+    rpc DeregisterVariable(VariableName) returns (Empty) {}
+}
+
+message VariableName {
+    required string name = 1;
+}
+
+message VariableValue {
+    required string value = 2;
+}

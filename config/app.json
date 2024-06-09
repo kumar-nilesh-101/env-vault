@@ -15,6 +15,10 @@
         {
             "package": "environment_registry",
             "path": "./proto/environment-registry.proto"
+        },
+        {
+            "package": "variables_registry",
+            "path": "./proto/variables-registry.proto"
         }
     ],
     "PROTO_DIR": "./proto",

@@ -1,10 +1,10 @@
 syntax = "proto3";
 
-package environment_registry;
+package environments_registry;
 
 import "util-message.proto";
 
-service EnvironmentsService {
+service EnvironmentsRegistryService {
     rpc RegisterEnvironment(EnvironmentName) returns (EnvironmentKey) {}
     rpc GetEnvironmentRegistryKey(EnvironmentName) returns (EnvironmentKey) {}
     rpc DeregisterEnvironment(EnvironmentKey) returns (Empty) {}

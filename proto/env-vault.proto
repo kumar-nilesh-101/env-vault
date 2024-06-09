@@ -4,6 +4,7 @@ package env_vault;
 
 import "service-registry.proto";
 import "environment-registry.proto";
+import "variables-registry.proto";
 import "util-message.proto";
 
 service HealthCheckService {
