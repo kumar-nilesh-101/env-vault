@@ -4,8 +4,8 @@ import { AppService } from './app.service';
 import { ConfigsModule } from '../../configs/configs.module';
 import { DatabaseModule } from '../../db/database.module';
 import { ServiceRegistryModule } from '../service-registry/service-registry.module';
-import { VariableRegistryModule } from '../variable-registry/variable-registry.module';
 import { EnvironmentsRegistryModule } from '../environments-registry/environments-registry.module';
+import { VariablesRegistryModule } from '../variables-registry/variables-registry.module';
 
 @Module({
     imports: [
@@ -13,7 +13,7 @@ import { EnvironmentsRegistryModule } from '../environments-registry/environment
         DatabaseModule,
         EnvironmentsRegistryModule,
         ServiceRegistryModule,
-        VariableRegistryModule,
+        VariablesRegistryModule,
     ],
     controllers: [AppController],
     providers: [AppService],
