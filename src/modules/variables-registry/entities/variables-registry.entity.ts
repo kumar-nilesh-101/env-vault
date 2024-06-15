@@ -5,6 +5,7 @@ export class VariablesRegistry {
     @Column({
         type: 'varchar',
         nullable: false,
+        primary: true,
     })
     variableName: string;
 

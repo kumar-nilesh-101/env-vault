@@ -13,7 +13,7 @@
             "path": "./proto/util-message.proto"
         },
         {
-            "package": "environment_registry",
+            "package": "environments_registry",
             "path": "./proto/environment-registry.proto"
         },
         {

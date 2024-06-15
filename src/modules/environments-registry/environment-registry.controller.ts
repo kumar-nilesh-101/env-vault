@@ -11,7 +11,7 @@ import { EnvironmentsInterceptor } from './interceptors/environments-registry.in
 export class EnvironmentController {
     constructor(private readonly environmentService: EnvironmentService) {}
 
-    @GrpcMethod('EnvironmentsService', 'RegisterEnvironment')
+    @GrpcMethod('EnvironmentsRegistryService', 'RegisterEnvironment')
     async registerEnvironment(@Payload('name') envName: string) {
         const registryKey = uuid();
 
@@ -22,12 +22,12 @@ export class EnvironmentController {
         return await this.environmentService.create(dto);
     }
 
-    @GrpcMethod('EnvironmentsService', 'GetEnvironmentRegistryKey')
+    @GrpcMethod('EnvironmentsRegistryService', 'GetEnvironmentRegistryKey')
     async getEnvironmentRegistryKey(@Payload('name') envName: string) {
         return await this.environmentService.findByEnvironmentName(envName);
     }
 
-    @GrpcMethod('EnvironmentsService', 'DeregisterEnvironment')
+    @GrpcMethod('EnvironmentsRegistryService', 'DeregisterEnvironment')
     async deregisterEnvironment(
         @Payload('key', ValidateUUID) registryKey: string,
     ) {

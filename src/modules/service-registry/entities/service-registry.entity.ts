@@ -1,4 +1,5 @@
-import { Entity, Column } from 'typeorm';
+import { EnvironmentsRegistry } from 'src/modules/environments-registry/entities/environments-registry.entity';
+import { Entity, Column, ManyToOne } from 'typeorm';
 
 @Entity()
 export class ServiceRegistry {
@@ -14,6 +15,9 @@ export class ServiceRegistry {
         type: 'uuid',
     })
     registryKey: string;
+
+    @ManyToOne(() => EnvironmentsRegistry)
+    environment: string;
 }
 
 export type ServiceRegistryRepository = typeof ServiceRegistry;
