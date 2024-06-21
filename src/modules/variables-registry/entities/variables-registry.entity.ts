@@ -16,6 +16,6 @@ export class VariablesRegistry {
     })
     variableValue: string;
 
-    @ManyToOne(() => ServiceRegistry)
+    @ManyToOne(() => ServiceRegistry, { nullable: false })
     service: string;
 }
