@@ -1,4 +1,5 @@
-import { Column, Entity } from 'typeorm';
+import { ServiceRegistry } from 'src/modules/service-registry/entities/service-registry.entity';
+import { Column, Entity, ManyToOne } from 'typeorm';
 
 @Entity()
 export class VariablesRegistry {
@@ -15,9 +16,6 @@ export class VariablesRegistry {
     })
     variableValue: string;
 
-    @Column({
-        type: 'uuid',
-        nullable: false,
-    })
-    serviceRegistrationKey: string;
+    @ManyToOne(() => ServiceRegistry)
+    service: string;
 }
