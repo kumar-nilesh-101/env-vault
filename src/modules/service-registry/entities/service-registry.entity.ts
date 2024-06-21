@@ -4,7 +4,6 @@ import { Entity, Column, ManyToOne } from 'typeorm';
 @Entity()
 export class ServiceRegistry {
     @Column({
-        unique: true,
         nullable: false,
         type: 'varchar',
     })
@@ -16,7 +15,7 @@ export class ServiceRegistry {
     })
     registryKey: string;
 
-    @ManyToOne(() => EnvironmentsRegistry)
+    @ManyToOne(() => EnvironmentsRegistry, { nullable: false })
     environment: string;
 }
 
