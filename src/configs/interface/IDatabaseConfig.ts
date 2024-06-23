@@ -1,3 +1,7 @@
 export interface IDatabaseConfig {
-    FILE_PATH: string;
+    HOST: string;
+    PORT: string;
+    USERNAME: string;
+    PASSWORD: string;
+    NAME: string;
 }

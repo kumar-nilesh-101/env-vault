@@ -4,6 +4,7 @@ import { readFileSync } from 'fs';
 export const ConfigType = {
     APP: 'APP',
     DB: 'DB',
+    REDIS: 'REDIS',
 } as const;
 
 export type ConfigType = keyof typeof ConfigType;
