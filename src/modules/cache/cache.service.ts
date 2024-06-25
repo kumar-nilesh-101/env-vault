@@ -8,4 +8,8 @@ export class CacheService {
     async get(key: string) {
         await this.dataSource.client.get(key);
     }
+
+    async set(key: string, value: any) {
+        await this.dataSource.client.set(key, value);
+    }
 }
